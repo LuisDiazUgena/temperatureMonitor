@@ -12,10 +12,10 @@ status = 0
 debug = 0
 iconState = ""
 toggleFile = "/home/pi/temperatureMonitor/Toggle.txt"
-PNGVIEWPATH = "/home/pi/temperatureMonitor/Pngview/"
+PNGVIEWPATH = "/home/pi/temperatureMonitor/Pngview"
 ICONPATH = "/home/pi/temperatureMonitor/icons"
 CLIPS = 1
-REFRESH_RATE = 2
+REFRESH_RATE = 3
 
 def changeicon(percent):
     global iconState
@@ -25,7 +25,7 @@ def changeicon(percent):
         iconsState = percent
         i = 0
         killid = 0
-        os.system(PNGVIEWPATH + "/pngview -b 0 -l 3000" + percent + " -x 10 -y 10 " + ICONPATH +'/'+ percent + ".png &")
+        os.system(PNGVIEWPATH + "/pngview -b 0 -l 3000" + percent + " -x 0 -y 10 " + ICONPATH +'/'+ percent + ".png &")
         out = check_output("ps aux | grep pngview | awk '{ print $2 }'", shell=True)
         nums = out.split('\n')
         for num in nums:
@@ -61,7 +61,7 @@ signal.signal(signal.SIGINT, endProcess)
 
 # Begin Battery Monitoring
 
-os.system(PNGVIEWPATH + "/pngview -b 0 -l 299999 -x 10 -y 10 " + ICONPATH + "/blank.png &")
+os.system(PNGVIEWPATH + "/pngview -b 0 -l 299999 -x 0 -y 10 " + ICONPATH + "/blank.png &")
 try:
     with open(toggleFile, 'r') as f:
         output = f.read()
@@ -78,87 +78,83 @@ if state == 1:
             if tempF > minTemp and tempF != -1:
                 if debug == 1:
                     print 'temp after function is' + str(tempF)
-                if tempF > 50 and tempF < 55:
+                if tempF > 50 and tempF < 51.5:
+                    changeicon("50")
+                elif tempF > 51 and tempF < 52.5:
+                    changeicon("51")
+                elif tempF > 52 and tempF < 53.5:
+                    changeicon("52")
+                elif tempF > 53 and tempF < 54.5:
+                    changeicon("53")
+                elif tempF > 54 and tempF < 55.5:
+                    changeicon("54")
+                elif tempF > 55 and tempF < 56.5:
                     changeicon("55")
-                elif tempF > 55 and tempF < 60:
+                elif tempF > 56 and tempF < 57.5:
+                    changeicon("56")
+                elif tempF > 57 and tempF < 58.5:
+                    changeicon("57")
+                elif tempF > 58 and tempF < 59.5:
+                    changeicon("58")
+                elif tempF > 59 and tempF < 60.5:
+                    changeicon("59")
+                elif tempF > 60 and tempF < 61.5:
                     changeicon("60")
-                elif tempF > 60 and tempF < 65:
+                elif tempF > 61 and tempF < 62.5:
+                    changeicon("61")
+                elif tempF > 62 and tempF < 63.5:
+                    changeicon("62")
+                elif tempF > 63 and tempF < 64.5:
+                    changeicon("63")
+                elif tempF > 64 and tempF < 65.5:
+                    changeicon("64")
+                elif tempF > 65 and tempF < 66.5:
                     changeicon("65")
-                elif tempF > 65 and tempF < 70:
+                elif tempF > 66 and tempF < 67.5:
+                    changeicon("66")
+                elif tempF > 67 and tempF < 68.5:
+                    changeicon("67")
+                elif tempF > 68 and tempF < 69.5:
+                    changeicon("68")
+                elif tempF > 69 and tempF < 70.5:
+                    changeicon("69")
+                elif tempF > 70 and tempF < 71.5:
                     changeicon("70")
-                elif tempF > 70 and tempF < 75:
+                elif tempF > 71 and tempF < 72.5:
+                    changeicon("71")
+                elif tempF > 72 and tempF < 73.5:
+                    changeicon("72")
+                elif tempF > 73 and tempF < 74.5:
+                    changeicon("73")
+                elif tempF > 75 and tempF < 76.5:
                     changeicon("75")
-                elif tempF > 75 and tempF < 80:
+                elif tempF > 76 and tempF < 77.5:
+                    changeicon("76")
+                elif tempF > 77 and tempF < 78.5:
+                    changeicon("77")
+                elif tempF > 78 and tempF < 79.5:
+                    changeicon("78")
+                elif tempF > 79 and tempF < 80.5:
+                    changeicon("79")
+                elif tempF > 80.5:
                     changeicon("80")
-                elif tempF > 80:
-                    changeicon("oh")
                 else :
                     changeicon("blank")
             else :
                 changeicon("blank")
-
-            # if ret < VOLT0:
-            #     if status != 0:
-            #         changeicon("0")
-            #         if CLIPS == 1:
-            #             os.system("/usr/bin/omxplayer --no-osd --layer 999999  " + ICONPATH + "/lowbattshutdown.mp4 --alpha 160;")
-            #             os.system("sudo shutdown -h now")
-            #     status = 0
-            # elif ret < VOLT25:
-            #     if status != 25:
-            #         changeicon("25")
-            #         if warning != 1:
-            #             if CLIPS == 1:
-            #                 os.system("/usr/bin/omxplayer --no-osd --layer 999999  " + ICONPATH + "/lowbattalert.mp4 --alpha 160")
-            #             warning = 1
-            #     status = 25
-            # elif ret < VOLT50:
-            #     if status != 50:
-            #         changeicon("50")
-            #     status = 50
-            # elif ret < VOLT75:
-            #     if status != 75:
-            #         changeicon("75")
-            #     status = 75
-            # else:
-            #     if status != 100:
-            #         changeicon("100")
-            #     status = 100
-
             time.sleep(REFRESH_RATE)
         except IOError:
             print "IOError"
-            # print('No i2c Chip Found!')
-            # exit(0)
-
 elif state == 0:
     while True:
         try:
             tempF = float(readTemp())
-            if tempF > minTemp and tempF != -1:
-                if debug == 1:
-                    print 'temp after function is' + str(tempF)
-                if tempF > 50 and tempF < 55:
-                    changeicon("55")
-                elif tempF > 55 and tempF < 60:
-                    changeicon("60")
-                elif tempF > 60 and tempF < 65:
-                    changeicon("65")
-                elif tempF > 65 and tempF < 70:
-                    changeicon("70")
-                elif tempF > 70 and tempF < 75:
-                    changeicon("75")
-                elif tempF > 75 and tempF < 80:
-                    changeicon("80")
-                elif tempF > 80:
-                    changeicon("oh")
-                else :
-                    changeicon("blank")
+            temp = string(int(float(readTemp)))
+            if temp > minTemp and tempF != -1 and tempF > 50 and tempF<100:
+                changeicon(temp)
             else :
                 changeicon("blank")
 
             time.sleep(REFRESH_RATE)
         except IOError:
             print "IOError"
-            # print('No i2c Chip Found!')
-            # exit(0)
