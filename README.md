@@ -1,5 +1,7 @@
 [based Mintybatterymonitor by HoolyHoo](https://github.com/HoolyHoo/Mintybatterymonitor)
 
+Fork from temperatureMonitor by luisDiazUgena
+
 # install
 run this commands in command line.
 ```
