@@ -149,7 +149,7 @@ if state == 1:
                 elif tempF > 84 and tempF < 85.5:
                     changeicon("79")
                 elif tempF > 85:
-                    changeicon("80")
+                    changeicon("oh")
                 else :
                     changeicon("blank")
             else :
