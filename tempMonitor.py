@@ -126,6 +126,8 @@ if state == 1:
                     changeicon("72")
                 elif tempF > 73 and tempF < 74.5:
                     changeicon("73")
+                elif tempF > 74 and tempF < 75.5:
+                    changeicon("73")
                 elif tempF > 75 and tempF < 76.5:
                     changeicon("75")
                 elif tempF > 76 and tempF < 77.5:
@@ -136,7 +138,17 @@ if state == 1:
                     changeicon("78")
                 elif tempF > 79 and tempF < 80.5:
                     changeicon("79")
-                elif tempF > 80.5:
+                elif tempF > 80 and tempF < 81.5:
+                    changeicon("79")
+                elif tempF > 81 and tempF < 82.5:
+                    changeicon("79")
+                elif tempF > 82 and tempF < 83.5:
+                    changeicon("79")
+                elif tempF > 83 and tempF < 84.5:
+                    changeicon("79")
+                elif tempF > 84 and tempF < 85.5:
+                    changeicon("79")
+                elif tempF > 85:
                     changeicon("80")
                 else :
                     changeicon("blank")
