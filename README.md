@@ -5,13 +5,13 @@ Fork from temperatureMonitor by luisDiazUgena
 # install
 run this commands in command line.
 ```
- sudo git clone https://github.com/julenvitoria/temperatureMonitor
+sudo git clone https://github.com/julenvitoria/temperatureMonitor
 
- cd temperatureMonitor
+cd temperatureMonitor
  
- sudo chmod 777 tempInstall.sh
+sudo chmod 777 tempInstall.sh
 
- sudo ./tempInstall.sh
+sudo ./tempInstall.sh
 
- sudo reboot
+sudo reboot
 ```
