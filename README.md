@@ -5,7 +5,7 @@ Fork from temperatureMonitor by luisDiazUgena
 # install
 run this commands in command line.
 ```
-sudo git clone https://github.com/julenvitoria/temperatureMonitor
+sudo git clone https://github.com/LuisDiazUgena/temperatureMonitor
 
 cd temperatureMonitor
  
